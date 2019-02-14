@@ -24,9 +24,14 @@ request: isNameDefined
 revoke: isNameDefined decrypt
 	./easyrsa revoke $(name)
 	./easyrsa gen-crl
-	if [ -f pki/reqs/$(name).req ]; then git rm pki/reqs/$(name).req; fi
-	if [ -f pki/issued/$(name).crt ]; then git rm pki/issued/$(name).crt; fi
-	git add pki/crl.pem pki/index.txt
+	git add \
+		pki/crl.pem \
+		pki/index.txt \
+		pki/index.txt.attr \
+		pki/reqs \
+		pki/certs_by_serial \
+		pki/issued pki/revoked
+	rm pki/index.txt.old
 	git commit -m "Revoked cert for $(name)"
 	git push origin
 	make clean
