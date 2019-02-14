@@ -2,12 +2,13 @@
 
 clean: 
 	rm pki/private/ca.key
+	rm pki/private/ca.pass
 
 encrypt:
 	sops -e pki/private/ca.key > pki/private/ca.key.enc
 	sops -e pki/private/ca.pass > pki/private/ca.pass.enc
 
-decrypt: clean
+decrypt:
 	sops -d pki/private/ca.key.enc > pki/private/ca.key
 	sops -d pki/private/ca.pass.enc > pki/private/ca.pass
 
@@ -27,7 +28,7 @@ revoke: isNameDefined decrypt
 	if [ -f pki/issued/$(name).crt ]; then git rm pki/issued/$(name).crt; fi
 	git add pki/crl.pem pki/index.txt
 	git commit -m "Revoked cert for $(name)"
-#	git push origin
+	git push origin
 	make clean
 
 show-req: isNameDefined
@@ -38,10 +39,10 @@ show-cert: isNameDefined
 
 sign: isNameDefined decrypt
 	./easyrsa sign-req client $(name)
-	git add pki/issued/$(name).crt
-	git add pki/index.txt pki/serial
-	git commit pki/issued/$(name) -m 'Sign certificate request for $(name)'
-#	git push origin
+	rm pki/index.txt.old pki/index.txt.attr pki/serial.old pki/extensions.temp
+	git add pki/issued/$(name).crt pki/index.txt pki/certs_by_serial/ pki/serial
+	git commit pki/issued/$(name).crt pki/index.txt pki/serial pki/certs_by_serial/ -m 'Sign certificate request for $(name)'
+	git push origin
 	make clean
 
 # Missing Revoking procedure
