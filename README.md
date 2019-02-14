@@ -18,11 +18,8 @@ Then this certificate must be signed by an administrator.
 Feel free to follow next action points:
 
 * Fork this repository on your own Github account: [fork a repo](https://help.github.com/articles/fork-a-repo/)
-* Create a feature branch: `git checkout -b <your_username>`
 * Enter in the needed vpn network directory: `cd cert`
 * Create your private key and certificate request: `make request name=<your username>`
-* Commit your certificate request: `make commit-request name=<your username>` 
-* Push your certificate request: `git push`
 * Create a new Pull Request on master branch: [create a pull request](https://help.github.com/articles/creating-a-pull-request/)
 * Grab a cup of coffee and wait patiently until an administrator issues your certificate.
 * Once ready your certificate can be retrieve from `./cert/pki/issued/<your_username>.crt`
@@ -50,18 +47,11 @@ In order to validate and sign a client certificate, your are going to do followi
 * Enter in the vpn network directory: `cd cert`
 * Decrypt ca.key: `make decrypt`
 * Sign certificate request: `make sign`
-* Commit issued certificate: `make commit-issued`
-* Push signed certificate: `git push`
-* Delete ca.key: `make clean`
 
 ### HowTo revoke client access?
 
 * Enter in the vpn network directory: `cd cert`
-* Decrypt ca.key: `make decrypt`
-* Revoke certificate: `make revoked`
-* Commit certificate revoke list: `make commit-revoked`
-* Push revoked list: `git push`
-* Delete ca.key: `make clean`
+* Revoke certificate: `make revoke`
 
 ## Links
 * [jenkins-infra/azure](https://github.com/jenkins-infra/azure)
