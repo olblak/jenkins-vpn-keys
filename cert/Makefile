@@ -13,9 +13,11 @@ commit-signed:
 
 encrypt:
 	sops -e pki/private/ca.key > pki/private/ca.key.enc
+	sops -e pki/private/ca.pass > pki/private/ca.pass.enc
 
 decrypt:
 	sops -d pki/private/ca.key.enc > pki/private/ca.key
+	sops -e pki/private/ca.pass.enc > pki/private/ca.pass
 
 isNameDefined:
 	@NAME=$(name); if [ "$$NAME" == "" ]; then echo "Missing argument name=<username>"; exit 1 ; fi
