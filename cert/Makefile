@@ -16,8 +16,8 @@ isNameDefined:
 
 request: isNameDefined
 	./easyrsa gen-req $(name)
-	git add pki/reqs/$(name)
-	git commit pki/reqs/$(name) -m 'Submit certificate request for $(name)'
+	git add pki/reqs/$(name).req
+	git commit pki/reqs/$(name).req -m 'Submit certificate request for $(name)'
 	git push origin
 
 revoke: isNameDefined decrypt
@@ -38,7 +38,7 @@ show-cert: isNameDefined
 
 sign: isNameDefined decrypt
 	./easyrsa sign-req client $(name)
-	git add pki/issued/$(name)
+	git add pki/issued/$(name).crt
 	git add pki/index.txt pki/serial
 	git commit pki/issued/$(name) -m 'Sign certificate request for $(name)'
 #	git push origin
