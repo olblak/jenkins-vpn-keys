@@ -7,17 +7,17 @@ default_ca	= CA_default		# The default ca section
 ####################################################################
 [ CA_default ]
 
-dir		= /home/olblak/Project/Jenkins-infra/jenkins-vpn-keys/pki	# Where everything is kept
-certs		= /home/olblak/Project/Jenkins-infra/jenkins-vpn-keys/pki			# Where the issued certs are kept
-crl_dir		= /home/olblak/Project/Jenkins-infra/jenkins-vpn-keys/pki			# Where the issued crl are kept
-database	= /home/olblak/Project/Jenkins-infra/jenkins-vpn-keys/pki/index.txt	# database index file.
-new_certs_dir	= /home/olblak/Project/Jenkins-infra/jenkins-vpn-keys/pki/certs_by_serial	# default place for new certs.
+dir		= /home/olblak/Project/Jenkins-infra/jenkins-vpn-keys/cert/pki	# Where everything is kept
+certs		= /home/olblak/Project/Jenkins-infra/jenkins-vpn-keys/cert/pki			# Where the issued certs are kept
+crl_dir		= /home/olblak/Project/Jenkins-infra/jenkins-vpn-keys/cert/pki			# Where the issued crl are kept
+database	= /home/olblak/Project/Jenkins-infra/jenkins-vpn-keys/cert/pki/index.txt	# database index file.
+new_certs_dir	= /home/olblak/Project/Jenkins-infra/jenkins-vpn-keys/cert/pki/certs_by_serial	# default place for new certs.
 
-certificate	= /home/olblak/Project/Jenkins-infra/jenkins-vpn-keys/pki/ca.crt	 	# The CA certificate
-serial		= /home/olblak/Project/Jenkins-infra/jenkins-vpn-keys/pki/serial 		# The current serial number
-crl		= /home/olblak/Project/Jenkins-infra/jenkins-vpn-keys/pki/crl.pem 		# The current CRL
-private_key	= /home/olblak/Project/Jenkins-infra/jenkins-vpn-keys/pki/private/ca.key	# The private key
-RANDFILE	= /home/olblak/Project/Jenkins-infra/jenkins-vpn-keys/pki/.rand		# private random number file
+certificate	= /home/olblak/Project/Jenkins-infra/jenkins-vpn-keys/cert/pki/ca.crt	 	# The CA certificate
+serial		= /home/olblak/Project/Jenkins-infra/jenkins-vpn-keys/cert/pki/serial 		# The current serial number
+crl		= /home/olblak/Project/Jenkins-infra/jenkins-vpn-keys/cert/pki/crl.pem 		# The current CRL
+private_key	= /home/olblak/Project/Jenkins-infra/jenkins-vpn-keys/cert/pki/private/ca.key	# The private key
+RANDFILE	= /home/olblak/Project/Jenkins-infra/jenkins-vpn-keys/cert/pki/.rand		# private random number file
 
 x509_extensions	= basic_exts		# The extensions to add to the cert
 
@@ -53,7 +53,7 @@ emailAddress		= optional
 # Easy-RSA request handling
 # We key off $DN_MODE to determine how to format the DN
 [ req ]
-default_bits		= 4096
+default_bits		= 2048
 default_keyfile 	= privkey.pem
 default_md		= sha256
 distinguished_name	= cn_only
