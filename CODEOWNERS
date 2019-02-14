@@ -1,0 +1,5 @@
+# Order is important. The last matching pattern has the most precedence.
+
+* @olblak
+
+cert/* @olblak @daniel-beck
