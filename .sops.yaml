@@ -1,3 +1,4 @@
 creation_rules:
-    - path_regex: pki
+    - pgp: 56D8342434B84E2D1CCF53D96E9A025D52210D3D
+    - path_regex: cert-pki/private
       pgp: 56D8342434B84E2D1CCF53D96E9A025D52210D3D
